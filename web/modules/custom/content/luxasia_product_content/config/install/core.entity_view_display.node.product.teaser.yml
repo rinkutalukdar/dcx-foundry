@@ -1,0 +1,67 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.product.body
+    - field.field.node.product.field_product_availability
+    - field.field.node.product.field_product_brand
+    - field.field.node.product.field_product_image
+    - field.field.node.product.field_product_name
+    - field.field.node.product.field_product_price
+    - image.style.thumbnail
+    - node.type.product
+  module:
+    - image
+    - user
+id: node.product.teaser
+targetEntityType: node
+bundle: product
+mode: teaser
+content:
+  field_product_availability:
+    type: boolean
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+  field_product_brand:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_product_image:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+  field_product_name:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_product_price:
+    type: string
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  body: true
+  links: true

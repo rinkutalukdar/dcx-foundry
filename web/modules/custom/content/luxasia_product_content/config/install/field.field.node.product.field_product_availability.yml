@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_availability
+    - node.type.product
+id: node.product.field_product_availability
+field_name: field_product_availability
+entity_type: node
+bundle: product
+label: 'Product Availability'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Available
+  off_label: 'Currently not available'
+field_type: boolean
