@@ -22,7 +22,9 @@
         "drupal/admin_toolbar": "^1.21",
         "drupal/console": "^1.0.2",
         "drupal/core": "~8.4",
+        "drupal/features": "^3.5",
         "drupal/media_entity": "^1.7",
+        "drupal/views_infinite_scroll": "^1.5",
         "drush/drush": "~8.0|^9.0.0-beta8",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
