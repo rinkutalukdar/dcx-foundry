@@ -8,6 +8,7 @@ use Drupal\Component\Serialization\Json;
 use Exception;
 use GuzzleHttp\Exception\RequestException;
 use Drupal\Core\State\StateInterface;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Class LuxasiaProductService.
@@ -73,7 +74,7 @@ class LuxasiaProductService {
 
       if (!empty($data)) {
         $rows = Json::decode($data);
-        return array_slice($rows, 0, 24);
+        return array_slice($rows, 0, 20);
       }
       return NULL;
     }
@@ -99,23 +100,39 @@ class LuxasiaProductService {
         return FALSE;
       }
 
+      //Save the brand as a term reference field
+      $brand_name = str_shuffle('Brand-2');
+      $tid = $this->getTidByName($brand_name, 'product_brand');
+
+      //If it is new brand create it
+      if ($tid == 0) {
+        $term = \Drupal\taxonomy\Entity\Term::create([
+          'vid' => 'product_brand',
+          'name' => $brand_name,
+        ]);
+        $term->save();
+        $tid = $term->id();
+      }
+
+      //Save the image as a file
       $image = file_get_contents($data['thumbnailUrl']);
-      $file = file_save_data($image, "public://thumb-" . str_shuffle('Image') . ".png", FILE_EXISTS_REPLACE);
+      $filename = basename($data['thumbnailUrl']);
+      $file = file_save_data($image, "public://" . $filename . ".png", FILE_EXISTS_REPLACE);
       $node = Node::create([
         'type' => 'product',
         'title' => (string) $data['title'],
         'field_external_id' => (string) $data['id'],
-        'field_product_brand' => str_shuffle('Brand'),
+        'field_product_brand' => [['target_id' => $tid]],
         'field_product_name' => (string) $data['title'],
         'field_product_image' => [
           'target_id' => $file->id(),
-          'alt' => 'Sample',
-          'title' => 'Sample File'
+          'alt' => $data['title'],
+          'title' => $data['title']
         ],
         'uid' => 1,
         'field_product_availability' => rand(0, 1),
         'body' => str_shuffle('This will be product description.'),
-        'field_product_price' => rand(10, 100) . "$",
+        'field_product_price' => rand(10, 100),
 
       ]);
       $node->save();
@@ -124,5 +141,22 @@ class LuxasiaProductService {
     catch (Exception $e) {
       \Drupal::logger('luxasia_product_management')->error('Product creation failed: @exception', ['@exception' => $e->getMessage()]);
     }
+  }
+
+  /**
+   * Helper function to check a term
+   * exist or not
+   */
+  public function getTidByName($name = NULL, $vocab_name = NULL) {
+    $properties = [];
+    if (!empty($name)) {
+      $properties['name'] = $name;
+    }
+    if (!empty($vocabulary)) {
+      $properties['vid'] = $vocab_name;
+    }
+    $terms = \Drupal::entityManager()->getStorage('taxonomy_term')->loadByProperties($properties);
+    $term = reset($terms);
+    return !empty($term) ? $term->id() : 0;
   }
 }

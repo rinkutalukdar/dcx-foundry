@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.node.field_product_brand
     - node.type.product
+    - taxonomy.vocabulary.product_brand
 id: node.product.field_product_brand
 field_name: field_product_brand
 entity_type: node
@@ -14,5 +15,14 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_brand: product_brand
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

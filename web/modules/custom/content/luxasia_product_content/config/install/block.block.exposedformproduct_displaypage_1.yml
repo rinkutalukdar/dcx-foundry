@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.product_display
+  module:
+    - system
+    - views
+  theme:
+    - luxasia_bootstrap
+id: exposedformproduct_displaypage_1
+theme: luxasia_bootstrap
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:product_display-page_1'
+settings:
+  id: 'views_exposed_filter_block:product_display-page_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: /product-display
+    negate: false
+    context_mapping: {  }

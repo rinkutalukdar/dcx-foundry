@@ -3,13 +3,14 @@ status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_product_brand
-field_name: field_product_brand
+id: node.field_external_id
+field_name: field_external_id
 entity_type: node
-type: entity_reference
+type: string
 settings:
-  target_type: taxonomy_term
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
 module: core
 locked: false
 cardinality: 1

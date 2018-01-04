@@ -1,1 +1,3 @@
+excluded:
+  - core.base_field_override.node.product.promote
 required: true

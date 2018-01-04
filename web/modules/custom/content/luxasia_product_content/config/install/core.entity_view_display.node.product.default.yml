@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.product.body
+    - field.field.node.product.field_external_id
     - field.field.node.product.field_product_availability
     - field.field.node.product.field_product_brand
     - field.field.node.product.field_product_image
@@ -17,6 +18,14 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
+  field_external_id:
+    weight: 5
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_product_availability:
     weight: 4
     label: hidden
@@ -28,15 +37,15 @@ content:
     type: boolean
     region: content
   field_product_brand:
-    weight: 0
+    weight: 2
     label: hidden
     settings:
-      link_to_entity: false
+      link: true
     third_party_settings: {  }
-    type: string
+    type: entity_reference_label
     region: content
   field_product_image:
-    weight: 2
+    weight: 1
     label: hidden
     settings:
       image_style: ''
@@ -45,7 +54,7 @@ content:
     type: image
     region: content
   field_product_name:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
