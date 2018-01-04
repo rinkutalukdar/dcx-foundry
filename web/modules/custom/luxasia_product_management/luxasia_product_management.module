@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Contains luxasia_product_management.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function luxasia_product_management_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the luxasia_product_management module.
+    case 'help.page.luxasia_product_management':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Manage and sync various Luxasia product') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function luxasia_product_management_theme() {
+  return [
+    'luxasia_product_management' => [
+      'variables' => ['content' => NULL],
+      'template' => 'luxasia-product-management',
+    ],
+  ];
+}

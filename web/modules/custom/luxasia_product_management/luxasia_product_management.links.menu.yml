@@ -1,0 +1,13 @@
+luxasia_product_management.luxasia_product_info:
+  title: 'Luxasia Product'
+  route_name: luxasia_product_management.luxasia_product_info
+  description: 'A description for the menu entry'
+  parent: system.admin_config
+  weight: 99
+luxasia_product_management.luxasia_product_config_form:
+  title: 'Luxasia Product Configuration'
+  route_name: luxasia_product_management.luxasia_product_config_form
+  description: 'A description for the menu entry'
+  parent: luxasia_product_management.luxasia_product_info
+  weight: 99
+

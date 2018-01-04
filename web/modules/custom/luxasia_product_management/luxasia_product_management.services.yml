@@ -1,0 +1,5 @@
+services:
+  luxasia_product_management.sync:
+    class: Drupal\luxasia_product_management\LuxasiaProductService
+    arguments: ['@state']
+

@@ -1,0 +1,21 @@
+
+luxasia_product_management.luxasia_product_info:
+  path: '/luxasia-product-management/luxasia-product-info'
+  defaults:
+    _controller: '\Drupal\luxasia_product_management\Controller\LuxasiaProductController::luxasia_product_info'
+    _title: 'Luxasia Product Management'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+luxasia_product_management.luxasia_product_config_form:
+  path: '/admin/config/luxasia-product-management/luxasia-product-config'
+  defaults:
+    _form: '\Drupal\luxasia_product_management\Form\LuxasiaProductConfigForm'
+    _title: 'Luxasia Product Configiguration'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
