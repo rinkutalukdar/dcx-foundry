@@ -74,7 +74,7 @@ class LuxasiaProductService {
 
       if (!empty($data)) {
         $rows = Json::decode($data);
-        return array_slice($rows, 0, 20);
+        return array_slice($rows, 0, 30);
       }
       return NULL;
     }
@@ -101,7 +101,7 @@ class LuxasiaProductService {
       }
 
       //Save the brand as a term reference field
-      $brand_name = str_shuffle('Brand-2');
+      $brand_name = str_shuffle('BR2');
       $tid = $this->getTidByName($brand_name, 'product_brand');
 
       //If it is new brand create it
